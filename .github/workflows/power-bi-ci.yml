@@ -1,0 +1,17 @@
+name: Basic CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate Markdown
+        uses: avto-dev/markdown-lint@v1
+        with:
+          args: "**/*.md"

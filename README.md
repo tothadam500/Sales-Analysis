@@ -1,57 +1,76 @@
 # Sales Analysis (Power BI)
 
-End-to-end **sales analytics** dashboard built on the AdventureWorks dataset. It demonstrates **Power Query data shaping**, **star-schema modeling**, and **DAX** for time intelligence and comparative analysis. The report contains **three tabs** to cover executive KPIs, product deep-dives, and customer insights.
+End-to-end **sales analytics** dashboard built on the AdventureWorks dataset. It
+demonstrates **Power Query data shaping**, **star-schema modeling**, and **DAX**
+for time intelligence and comparative analysis. The report contains **three
+tabs** to cover executive KPIs, product deep-dives, and customer insights.
 
 ---
 
 ## 🔍 Highlights
-- **Star schema**: `Sales Data` (fact) linked to `Calendar`, `Customer`, `Product`, `Product Subcategories`, `Product Categories`, `Territory` (dimensions).
-- **Time intelligence**: rolling windows and YoY trends using a marked Date table.
-- **Interactive analysis**: drillthrough, slicers, KPI cards, and tooltip details.
-- **Business questions**: revenue/profit trends, product performance vs targets, return rate, and high-value customers.
+
+- **Star schema**: `Sales Data` (fact) linked to `Calendar`, `Customer`,
+  `Product`, `Product Subcategories`, `Product Categories`, `Territory`
+  (dimensions).
+- **Time intelligence**: rolling windows and YoY trends using a marked Date
+  table.
+- **Interactive analysis**: drillthrough, slicers, KPI cards, and tooltip
+  details.
+- **Business questions**: revenue/profit trends, product performance vs targets,
+  return rate, and high-value customers.
 
 ---
 
 ## 📊 Report Pages
 
 ### 1) Comprehensive Sales Performance Overview
+
 - Executive KPIs: **Revenue**, **Profit**, **Orders**, **Return Rate**
-- Weekly revenue trend (with projection), **Orders by Category**, **Top 10 Products** heatmap
+- Weekly revenue trend (with projection), **Orders by Category**, **Top 10
+  Products** heatmap
 - Monthly revenue/returns highlights and most-ordered/most-returned items
 
-<img width="1562" alt="ComprehensiveOverview" src="https://github.com/tothadam500/Sales-Analysis/assets/129130362/c3b23dd3-f651-4e5a-9554-71f6813d5860" />
+![ComprehensiveOverview](assets/overview.png)
 
 ---
 
 ### 2) In-Depth Analysis of Selected Item
-- Pick a product to see **Orders vs Target**, **Revenue vs Target**, **Profit vs Target**
+
+- Pick a product to see **Orders vs Target**, **Revenue vs Target**, **Profit vs
+  Target**
 - **Weekly Profit** trend with **Adjusted Profit** scenario (price slider)
 - Metric switcher for Orders / Revenue / Returns / Profit / Return %
 
-<img width="1562" alt="InDepth" src="https://github.com/tothadam500/Sales-Analysis/assets/129130362/bbb83196-e0e2-48b8-9f37-6b08d677b5db" />
+![InDepth](assets/indepth.png)
 
 ---
 
 ### 3) Customer Revenue Insights
-- **Unique Customers** and **Revenue per Customer** KPIs
-- Top 100 customers table; distribution of orders by **Income** and **Occupation**
-- “Top Customer” card with Orders & Revenue
 
-<img width="1562" alt="Customers" src="https://github.com/tothadam500/Sales-Analysis/assets/129130362/a53e1540-47df-414d-86e4-dd605f31079b" />
+- **Unique Customers** and **Revenue per Customer** KPIs
+- Top 100 customers table; distribution of orders by **Income** and
+  **Occupation**
+- "Top Customer" card with Orders & Revenue
+
+![Customers](assets/customers.png)
 
 ---
 
 ## 🧱 Data Model & Transformations
 
-Modeled as a **star schema** with a proper Date table (marked as Date) and **single-direction** relationships from dimensions to the fact.
+Modeled as a **star schema** with a proper Date table (marked as Date) and
+**single-direction** relationships from dimensions to the fact.
 
-<img width="1459" alt="Data" src="https://github.com/tothadam500/Sales-Analysis/assets/129130362/bf69d7df-d495-4f95-83d3-62684c67c28b" />
+![Data](assets/data-model.png)
 
-**Key tables**
+### Key tables
+
 - **Fact**: `Sales Data`, `Returns Data`
-- **Dimensions**: `Calendar Lookup`, `Customer Lookup`, `Product Lookup`, `Product Subcategories`, `Product Categories Lookup`, `Territory Lookup`
+- **Dimensions**: `Calendar Lookup`, `Customer Lookup`, `Product Lookup`,
+  `Product Subcategories`, `Product Categories Lookup`, `Territory Lookup`
 
-**Power Query (examples)**
+### Power Query (examples)
+
 - Enforced data types; added year/month parts and month sort columns
 - Cleaned/renamed columns and created surrogate/business keys
 - Filtered null/invalid rows for reliable DAX measures
@@ -85,17 +104,20 @@ CALCULATE (
     )
 )
 ```
+
 ## 🗄️ SQL Connectivity with Parameters
 
-The PBIX is wired with **Power Query parameters** to demonstrate how Power BI can connect to a T-SQL view layer in SQL Server.
+The PBIX is wired with **Power Query parameters** to demonstrate how Power BI
+can connect to a T-SQL view layer in SQL Server.
 
-**Parameters defined in Power Query**
+### Parameters defined in Power Query
+
 - `Parameter_Server` (Text)
 - `Parameter_Database` (Text)
 - `RowLimit` (Whole Number)
 - `StartDate` (Date)
 
-**T-SQL statement (parameterized)**
+### T-SQL statement (parameterized)
 
 ```m
 let
